@@ -1,3 +1,16 @@
+# CheckList
+
+# Vertice - Ok
+# Aresta - Ok
+# Grafo - Ok
+# Fazer um Grafo funcional - Ok
+# Implementar o Grafo no plano cartesiano - Ok
+# Implementar visualizaçao grafica -
+# Fazer com que o grafo faça a arestas automaticamente - Ok
+# Implementar ACS - 
+# Comentar todo o projeto - 
+# Fazer apresentaçao - 
+
 import math
 from matplotlib import pyplot as plt
 
