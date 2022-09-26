@@ -3,10 +3,10 @@ from matplotlib import pyplot as plt
 
 class Vertice:
     def __init__(self, valor, x, y):
-        self.__valor = valor
-        self.__x = x
-        self.__y = y
-        self.__arestas = set()
+        self.__valor = valor # Valor do vertice (nome para referencia do vertice)
+        self.__x = x # Posicao X do vertice no plano cartesiano
+        self.__y = y # Posicao Y do vertice no plano cartesiano
+        self.__arestas = set() # Conjunto de Arestas
     
     def getValor(self):
         return self.__valor
@@ -32,8 +32,8 @@ class Vertice:
 
 class Aresta:
     def __init__(self, vOrigem, vDestino):
-        self.__vOrigem = vOrigem
-        self.__vDestino = vDestino
+        self.__vOrigem = vOrigem # Vertice de origem da aresta
+        self.__vDestino = vDestino # Vertice de destino da aresta
         self.__vOrigem.adicionarAresta(self)
         self.__vDestino.adicionarAresta(self)
         
@@ -42,7 +42,7 @@ class Aresta:
     def getvDestino(self):
         return self.__vDestino
 
-    def getTamanho(self):
+    def getTamanho(self): # Funcao para descobrir da aresta
         return math.sqrt((math.pow(self.__vDestino.getX() - self.__vOrigem.getX(), 2)) + (math.pow(self.__vDestino.getY() - self.__vOrigem.getY(), 2)))
 
 
@@ -61,12 +61,12 @@ class Grafo:
     def getVertices(self):
         return self.__vertices 
 
-    def setTodasArestas(self):
+    def setTodasArestas(self): # Funcao para definir todas as arestas automaticamente
         for verticeOrigem in self.getVertices():
             for verticeDestino in self.getVertices():
-                grafo.setArestas(Aresta(verticeOrigem, verticeDestino))
+                self.setArestas(Aresta(verticeOrigem, verticeDestino))
 
-    def verTodosOsVerticesComTodasAsArestas(self):
+    def verTodosOsVerticesComTodasAsArestas(self): # Funcao de auxilio
         for v in self.getVertices():
             print(f"Nome do vertice {v.getValor()}, Posicao do vertice X={v.getX()} Y={v.getY()}")
             print("Arestas...")
@@ -74,7 +74,7 @@ class Grafo:
                 print(f"Vertice de origem {a.getvOrigem().getValor()}, Vertice de destino {a.getvDestino().getValor()}, Distancia {a.getTamanho()}")
             print("")
 
-    def verMatplotlib(self):
+    def verMatplotlib(self): # Funcao para ver os vertices graficamente
         x = []
         y = []
 
@@ -85,7 +85,9 @@ class Grafo:
         plt.scatter(x,y)
         plt.show()
 
+    # Tentando implementar Ant Colony System
 
+    """
     def ACS(self, tamanhoProblema, m, p, b, o, q0):
         pOtimo = criarSolucaoEuristica(tamanhoProblema)
         pOtimoCusto = custo(sh)
@@ -103,9 +105,10 @@ class Grafo:
             atualizarFeromonioGlobal(feromonio,pOtimo,pOtimoCusto,p)
 
         return pOtimo
+    """
 
 
-
+# Criando vertices
 a = Vertice('A', 8, 2)
 b = Vertice('B', 0, 4)
 c = Vertice('C', -1, 6)
@@ -122,11 +125,11 @@ m = Vertice('M', 11, 3)
 n = Vertice('N', 13, 2)
 
 
-G = Grafo()
-G.setVertices({a,b,c,d,e,f,g,h,i,j,k,l,m,n})
-G.setTodasArestas()
+G = Grafo() # Criando um grafo
+G.setVertices({a,b,c,d,e,f,g,h,i,j,k,l,m,n}) # Definindo os vertices
+G.setTodasArestas() # Definindo automaticamente todas as arestas
 
-
+G.verMatplotlib()
 
 
 
